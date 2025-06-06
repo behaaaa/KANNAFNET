@@ -123,7 +123,7 @@ Super-Resolution Workflow (KAN + NAFNet)
                        │
                        ▼
         ┌────────────────────────────┐
-        │   HR ↔ LR Pairs Generator  │
+        |     Data Gathering         │
         └────────────────────────────┘
                        │
                        ▼
@@ -157,27 +157,6 @@ Super-Resolution Workflow (KAN + NAFNet)
                        │
                        ▼
         Final Super-Resolution Model (.pt)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
