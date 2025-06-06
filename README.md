@@ -115,6 +115,65 @@ top_acts = registry.get_top_activations(n=5)
 
 ---
 
+Super-Resolution Pipeline
+│
+├── 📥 Load High-Resolution (HR) Images
+│   └── from user-specified folder (e.g., ./data/HR_Images)
+│
+├── 🔄 Preprocessing
+│   ├── Apply random flip, rotation (for data augmentation)
+│   └── Extract HR patches and downscale to get LR patches
+│
+├── 🧠 Model Architecture
+│   ├── 🔗 KAN Blocks
+│   │   └── Approximate HR pixel functions using adaptive activation networks
+│   ├── 🔧 NAFNet Blocks
+│   │   └── Denoise and resolve pixel congestion in upsampled images
+│   └── 🔀 Combined Output
+│       └── Clean, high-quality SR image
+│
+├── 🎯 Loss Functions
+│   ├── Charbonnier Loss (pixel-wise robust loss)
+│   └── Perceptual Loss (feature-level comparison via VGG)
+│
+├── 📚 Training Phase
+│   ├── Loop over epochs and batches
+│   ├── Compute losses and update model weights
+│   └── Periodically update activation function usage stats
+│
+├── 📈 Validation
+│   └── Compare predicted SR images with HR ground truth (using unseen LR inputs)
+│
+└── 💾 Output
+    ├── Save trained model
+    ├── Log losses and performance
+    └── Export SR validation samples
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ## 📜 License
 
 This project is licensed under the [MIT License](https://opensource.org/licenses/MIT).
