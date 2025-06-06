@@ -115,42 +115,49 @@ top_acts = registry.get_top_activations(n=5)
 
 ---
 
-### 🔁 Super-Resolution Workflow Tree (KAN + NAFNet)
 
-Super-Resolution Pipeline
-│
-├── Load High-Resolution (HR) Images
-│ └── From user-specified folder (e.g. ./data/HR_Images)
-│
-├── Preprocessing
-│ ├── Apply random flip and rotation
-│ └── Downsample HR images to get LR images
-│
-├── KAN + NAFNet Model
-│ ├── KAN Block: approximates pixel-value functions with adaptive activations
-│ ├── NAFNet Block: denoises and resolves pixel congestion
-│ └── Combined SR output
-│
-├── Loss Functions
-│ ├── Charbonnier Loss (robust pixel-wise)
-│ └── Perceptual Loss (VGG-based feature distance)
-│
-├── Training Loop
-│ ├── Load batches
-│ ├── Compute losses
-│ ├── Update model weights
-│ └── Update activation usage stats
-│
-├── Validation
-│ └── Compare SR prediction with original HR using LR input
-│
-└── Save Outputs
-├── Trained model weights
-└── SR prediction samples
+Super-Resolution Workflow (KAN + NAFNet)
+----------------------------------------
 
-Copy
-Edit
-#######
+          High-Resolution Images (HR)
+                       │
+                       ▼
+        ┌────────────────────────────┐
+        │   HR ↔ LR Pairs Generator  │
+        └────────────────────────────┘
+                       │
+                       ▼
+         ┌────────────────────────┐
+         │   Patch Extraction +   │
+         │     Data Augmentation  │
+         └────────────────────────┘
+                       │
+                       ▼
+         ┌────────────────────────┐
+         │  KAN Function Learner  │
+         └────────────────────────┘
+                       │
+                       ▼
+         ┌────────────────────────┐
+         │   NAFNet Denoising &   │
+         │  Spatial Reconstruction│
+         └────────────────────────┘
+                       │
+                       ▼
+       ┌──────────────────────────────┐
+       │   Charbonnier + Perceptual   │
+       │          Loss                │
+       └──────────────────────────────┘
+                       │
+                       ▼
+         ┌────────────────────────┐
+         │     Model Checkpoint   │
+         │       + Validation     │
+         └────────────────────────┘
+                       │
+                       ▼
+        Final Super-Resolution Model (.pt)
+
 
 
 
