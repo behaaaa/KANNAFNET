@@ -102,7 +102,7 @@ top_acts = registry.get_top_activations(n=5)
 ## 🧱 Applications
 
 - Super-resolution of natural images (x2, x4 scaling)
-- Denoising and artifact reduction
+- Denoising and Pixel leakage  reduction
 - Activation function analysis and dynamic architecture tuning
 
 ---
